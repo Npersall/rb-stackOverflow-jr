@@ -6,5 +6,8 @@ Phase 2 Week 2 Group Project
 * Steve Rector
 * Victoria Chen
 
-## 
+## User Stories
 The user stories that define our MVP...
+
+## MVP
+Something here...
