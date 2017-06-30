@@ -10,5 +10,5 @@ Trello Board: [https://trello.com/githubcloneproject](https://trello.com/githubc
 * Victoria Chen
 
 ## User Stories / MVP
-![Image of wireframes](https://github.com/sf-rock-doves-2017/vans/blob/master/20170629_115247.jpg)
-![Image of schema](https://github.com/sf-rock-doves-2017/vans/blob/master/20170629_115703.jpg)
+![Image of wireframes](./20170629_115247.jpg)
+![Image of schema](./20170629_115703.jpg)
