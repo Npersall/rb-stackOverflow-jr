@@ -5,5 +5,7 @@ class Answer < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :body, :responder_id, :question_id, { presence: true }
-  validates_uniqueness_of :best_answer, scope:  :question_id
+
+  # remove for now as it is not actually validating only one answer can be the best answer
+  # validates_uniqueness_of :best_answer, scope:  :question_id
 end

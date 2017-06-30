@@ -1,14 +1,23 @@
 <h2><%= @question.title %></h2>
 <p><%=@question.body%></p>
-<p><%@question.answers.each do |answer| %>
+
+<% if @best_answer %>
+  <h3>Best Answer</h3>
+  <p>
+    <%= @best_answer.body %>, <%= @best_answer.responder.username %>
+  </p>
+<% end %>
+
+<h3>Other Answers</h3>
+<p><%@other_answers.each do |answer| %>
   <ul>
     <li> <%=answer.body%>, <%= answer.responder.username %></li>
   </ul>
   <% end %>
 </p>
 
+<h4>Post New Answer:</h4>
 <form action="/answers" method="post">
-  <h4>Post New Answer:</h4>
   <% if @errors %>
     <ul>
       <% @errors.each do |error| %>

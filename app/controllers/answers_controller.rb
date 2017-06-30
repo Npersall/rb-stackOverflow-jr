@@ -1,5 +1,5 @@
 post '/answers' do
-  @answer = Answer.new(body: params[:body], responder_id: session[:user_id], question_id: params[:question_id])
+  @answer = Answer.new(body: params[:body], responder_id: session[:user_id], question_id: params[:question_id], best_answer: false)
   @question = @answer.question
   if @answer.save
     "answer saved successfully"
