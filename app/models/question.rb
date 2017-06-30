@@ -16,7 +16,9 @@ class Question < ActiveRecord::Base
 
   def best_answer=(new_best_answer)
     old_best_answer = self.best_answer
-    old_best_answer.update(best_answer: false)
+    if old_best_answer
+      old_best_answer.update(best_answer: false)
+    end
     new_best_answer.update(best_answer: true)
   end
 end

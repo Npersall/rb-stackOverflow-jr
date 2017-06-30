@@ -13,5 +13,6 @@ end
 put '/answers/:id' do
   @answer = Answer.find(params[:id])
   @question = @answer.question
-  @question.best_answer.best_answer = false
+  @question.best_answer = @answer
+  redirect "/questions/#{@question.id}"
 end

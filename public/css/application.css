@@ -19,3 +19,9 @@ body {
   max-width: 500px;
   padding: 10px;
 }
+
+#best_answer {
+  border: 5px dotted blue;
+  padding: 10px;
+  max-width: 600px;
+}

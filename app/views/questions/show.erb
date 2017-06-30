@@ -4,13 +4,15 @@
 <p class="question">"<%=@question.body%>"</p>
 <%= erb :'/_comments', layout: false, locals: {comments: @question.comments } %>
 
-<% if @best_answer %>
-  <h3>Best Answer</h3>
-  <p class="answer">
-    <%= @best_answer.body %>, <%= @best_answer.responder.username %>
-    <%= erb :'/_comments', layout: false, locals: {comments: @best_answer.comments } %>
-  </p>
-<% end %>
+<div id="best_answer">
+  <% if @best_answer %>
+    <h3>Best Answer</h3>
+    <p class="answer">
+      <%= @best_answer.body %>, <%= @best_answer.responder.username %>
+      <%= erb :'/_comments', layout: false, locals: {comments: @best_answer.comments } %>
+    </p>
+  <% end %>
+</div>
 
 <h3>Other Answers</h3>
 <p><%@other_answers.each do |answer| %>
