@@ -12,6 +12,10 @@
 <p><%@other_answers.each do |answer| %>
   <ul>
     <li> <%=answer.body%>, <%= answer.responder.username %></li>
+    <form action='/answers/<%= answer.id %>' method='POST'>
+      <input type="hidden" name="_method" value="PUT">
+      <input type="submit" value="SELECT AS BEST ANSWER">
+    </form>
   </ul>
   <% end %>
 </p>
