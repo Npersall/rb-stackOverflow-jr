@@ -24,9 +24,9 @@ questions.each do |question|
   question.comments.create(commenter: users.sample, body: Faker::Pokemon.name)
 
   # 3 votes from random users
-  question.votes.create(vote_direction: 1)
-  question.votes.create(vote_direction: 1)
-  question.votes.create(vote_direction: -1)
+  question.votes.create(voter: users.sample, vote_direction: 1)
+  question.votes.create(voter: users.sample, vote_direction: 1)
+  question.votes.create(voter: users.sample, vote_direction: -1)
 end
 
 answers.each do |answer|
@@ -36,7 +36,7 @@ answers.each do |answer|
   answer.comments.create(commenter: users.sample, body: Faker::Pokemon.name)
 
   # 3 votes from random users
-  answer.votes.create(vote_direction: 1)
-  answer.votes.create(vote_direction: 1)
-  answer.votes.create(vote_direction: -1)
+  answer.votes.create(voter: users.sample, vote_direction: 1)
+  answer.votes.create(voter: users.sample, vote_direction: 1)
+  answer.votes.create(voter: users.sample, vote_direction: -1)
 end
