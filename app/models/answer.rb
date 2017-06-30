@@ -6,4 +6,5 @@ class Answer < ActiveRecord::Base
   has_many :comments, as: :commentable
 
   validates :body, :responder_id, :question_id, { presence: true }
+
 end

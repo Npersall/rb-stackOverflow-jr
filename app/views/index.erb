@@ -1,10 +1,13 @@
 <h1>THIS IS THE HOMEPAGE</h1>
-
+<h2>Welcome to the best resource page for anything you want!</h2>
 <% @questions.each do |question| %>
   <ul>
     <span><li>
-      <%= vote_sum(question) %>
+      Votes: <%= question.vote_sum %>
+      Answers: <%= question.answers.count%>
+      <!--stretch # of times question viewed -->
       <%= question.title %>
+      <%= question.author.username %>
     </li></span>
   </ul>
 <% end %>

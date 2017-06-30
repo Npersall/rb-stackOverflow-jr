@@ -5,5 +5,5 @@ class Question < ActiveRecord::Base
   has_many :votes, as: :votable
   has_many :comments, as: :commentable
 
-  validates :author_id, :title, :body, { presence: true }n
+  validates :author_id, :title, :body, { presence: true }
 end
