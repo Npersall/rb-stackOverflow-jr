@@ -3,7 +3,7 @@
 <% @questions.each do |question| %>
   <ul>
     <span><li>
-      <%= vote_sum(question) %>
+      <%= question.vote_sum %>
       <%= question.title %>
     </li></span>
   </ul>

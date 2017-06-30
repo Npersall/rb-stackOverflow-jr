@@ -1,26 +1,31 @@
 <h2><%= @question.title %></h2>
-<p><%=@question.body%></p>
+<p>Posted By: <%= @question.author.username %></p>
+<h3>Question</h3>
+<p class="question">"<%=@question.body%>"</p>
+<%= erb :'/_comments', layout: false, locals: {comments: @question.comments } %>
 
 <% if @best_answer %>
   <h3>Best Answer</h3>
-  <p>
+  <p class="answer">
     <%= @best_answer.body %>, <%= @best_answer.responder.username %>
+    <%= erb :'/_comments', layout: false, locals: {comments: @best_answer.comments } %>
   </p>
 <% end %>
 
 <h3>Other Answers</h3>
 <p><%@other_answers.each do |answer| %>
-  <ul>
-    <li> <%=answer.body%>, <%= answer.responder.username %></li>
+  <div>
+    <p class="answer"> <%=answer.body%>, <%= answer.responder.username %></p>
     <form action='/answers/<%= answer.id %>' method='POST'>
       <input type="hidden" name="_method" value="PUT">
       <input type="submit" value="SELECT AS BEST ANSWER">
     </form>
-  </ul>
+  </div>
+   <%= erb :'/_comments', layout: false, locals: {comments: answer.comments } %>
   <% end %>
 </p>
 
-<h4>Post New Answer:</h4>
+<h3>Post New Answer</h3>
 <form action="/answers" method="post">
   <% if @errors %>
     <ul>

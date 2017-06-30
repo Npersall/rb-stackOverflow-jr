@@ -11,4 +11,7 @@ post '/answers' do
 end
 
 put '/answers/:id' do
+  @answer = Answer.find(params[:id])
+  @question = @answer.question
+  @question.best_answer.best_answer = false
 end

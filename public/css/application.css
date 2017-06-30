@@ -1,0 +1,21 @@
+body {
+  padding: 20px;
+}
+
+.comment {
+  background-color: lightgray;
+  max-width: 500px;
+  padding: 10px;
+}
+
+.answer {
+  border: 2px solid red;
+  max-width: 500px;
+  padding: 10px;
+}
+
+.question {
+  background-color: yellow;
+  max-width: 500px;
+  padding: 10px;
+}

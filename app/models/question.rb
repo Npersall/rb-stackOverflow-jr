@@ -13,4 +13,10 @@ class Question < ActiveRecord::Base
   def other_answers
     self.answers.where(best_answer: false)
   end
+
+  def best_answer=(new_best_answer)
+    old_best_answer = self.best_answer
+    old_best_answer.update(best_answer: false)
+    new_best_answer.update(best_answer: true)
+  end
 end
