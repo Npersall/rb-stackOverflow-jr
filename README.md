@@ -1,7 +1,9 @@
 # Team VANS: GitHub Clone
 Phase 2 Week 2 Group Project
 
-Trello Board: [https://trello.com/githubcloneproject](https://trello.com/githubcloneproject)
+[Challenge Description](https://github.com/sf-rock-doves-2017/sinatra-overflow-challenge)
+
+[Trello Board](https://trello.com/githubcloneproject)
 
 ## Team Members
 * Alexander Rowland
