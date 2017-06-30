@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :answers
-  has_many :questions
-
+  has_many :answers, foreign_key: :responder_id
+  has_many :questions, foreign_key: :author_id
+  has_many :comments, foreign_key: :commenter_id
+  has_many :votes, foreign_key: :voter_id
 
   validates :username, { presence: true, uniqueness: true }
   validates :password_hash, { presence: true }
