@@ -8,13 +8,13 @@ body {
   padding: 10px;
 }
 
-.answer {
+.question {
   border: 2px solid red;
   max-width: 500px;
   padding: 10px;
 }
 
-.question {
+.answer {
   background-color: yellow;
   max-width: 500px;
   padding: 10px;
