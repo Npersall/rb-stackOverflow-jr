@@ -1,0 +1,10 @@
+<h1>THIS IS THE HOMEPAGE</h1>
+
+<% @questions.each do |question| %>
+  <ul>
+    <span><li>
+      <%= vote_sum(question) %>
+      <%= question.title %>
+    </li></span>
+  </ul>
+<% end %>
