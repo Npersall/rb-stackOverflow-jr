@@ -6,9 +6,18 @@
   </ul>
   <% end %>
 </p>
-<form action="/answers/new" method="post">
-  <h4>Post New Answer:</h4>
-  <textarea rows="4" cols="50" name="body"></textarea><br>
-  <input type="submit" value="Post Now">
 
+<form action="/answers" method="post">
+  <h4>Post New Answer:</h4>
+  <% if @errors %>
+    <ul>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <textarea rows="4" cols="50" name="body"></textarea><br>
+  <input type="hidden" name="question_id", value="<%=@question.id %>">
+  <input type="submit" value="Post Now">
 </form>
+
