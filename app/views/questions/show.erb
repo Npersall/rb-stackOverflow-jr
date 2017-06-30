@@ -2,7 +2,13 @@
 <p><%=@question.body%></p>
 <p><%@question.answers.each do |answer| %>
   <ul>
-    <li> <%=answer.body%>, , <%= answer.responder.username %></li>
+    <li> <%=answer.body%>, <%= answer.responder.username %></li>
   </ul>
   <% end %>
 </p>
+<form action="/answers/new" method="post">
+  <h4>Post New Answer:</h4>
+  <textarea rows="4" cols="50" name="body"></textarea><br>
+  <input type="submit" value="Post Now">
+
+</form>
