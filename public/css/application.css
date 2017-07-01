@@ -2,6 +2,21 @@ body {
   padding: 20px;
 }
 
+#logout_button {
+  background-color: transparent;
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+  border: none;
+  padding: 0px;
+}
+
+#logout_form {
+  display: inline-block;
+}
+
+
+
 .comment {
   background-color: lightgray;
   max-width: 500px;

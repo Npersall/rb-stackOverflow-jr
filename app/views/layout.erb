@@ -24,7 +24,7 @@
 
     <% if logged_in? %>
       <a href="/users/<%= current_user.id %>"> <%= current_user.username %></a>
-      <form method="post" action="/logout"><input type="submit" name="logout" value="Logout"></form>
+      <form id="logout_form" method="post" action="/logout"><input id="logout_button" type="submit" name="logout" value="Logout"></form>
 
     <% else %>
       <a href="/login">Login</a>
