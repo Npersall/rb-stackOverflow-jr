@@ -2,6 +2,30 @@ body {
   padding: 20px;
 }
 
+.vote_count {
+  font-size: 20px;
+  margin: 2px;
+}
+
+.vote_container {
+  text-align: center;
+}
+
+.body_text {
+  background: yellow;
+  padding: 10px;
+  width: 450px
+}
+
+td {
+  padding: 10px;
+}
+
+.best_answer_button {
+  width: 100px;
+  white-space: normal;
+}
+
 #logout_button {
   background-color: transparent;
   color: -webkit-link;
@@ -19,34 +43,23 @@ body {
   background-color: lightgray;
   max-width: 500px;
   padding: 10px;
+  margin-left: 20px
 }
 
-.question {
-  background-color: yellow;
-  max-width: 500px;
-  padding: 10px;
-}
-
-.answer_text {
-  background-color: yellow;
-  max-width: 500px;
-  padding: 10px;
-}
-
-.answer_box {
+.answer_container {
   border: 2px solid black;
   padding: 5px;
-  max-width: 550px;
+  max-width: 600px;
   margin: 10px;
 }
 
-#best_answer {
+.best_answer_container {
   border: 5px dotted blue;
   padding: 10px;
   max-width: 600px;
 }
 
-#question {
+.question_container {
   border: 5px dotted red;
   padding: 10px;
   max-width: 600px;

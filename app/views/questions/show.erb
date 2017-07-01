@@ -4,42 +4,72 @@
 <!-- question -->
 <h2><%= @question.title %></h2>
 <p>Posted By: <%= @question.author.username %></p>
-<div id="question">
-  <h3>Question</h3>
-  <%= erb :'_votes', layout: false, locals: {votable_item: @question} %>
-  <p class="question">"<%=@question.body%>"</p>
+<h3>Question</h3>
+
+<div class="question_container">
+  <table>
+    <tr>
+      <td class="vote_container">
+        <%= erb :'_votes', layout: false, locals: {votable_item: @question} %>
+      </td>
+      <td class="body_text">
+        "<%=@question.body%>"
+      </td>
+    </tr>
+  </table>
   <%= erb :'/_comments', layout: false, locals: {comments: @question.comments } %>
+  <br>
   <%= erb :'/_add_comment', layout: false, locals: {commentable_item: @question} %>
 </div>
 
 <!-- best answer -->
 <% if @best_answer %>
-  <div id="best_answer">
-    <h3>Best Answer</h3>
-    <%= erb :'_votes', layout: false, locals: {votable_item: @best_answer} %>
-    <p class="answer_text">
-      <%= @best_answer.body %><br><br>
-      Answered By: <%= @best_answer.responder.username %>
-      <%= erb :'/_comments', layout: false, locals: {comments: @best_answer.comments } %>
-      <%= erb :'/_add_comment', layout: false, locals: {commentable_item: @best_answer} %>
-    </p>
+  <h3>Best Answer</h3>
+  <div class="best_answer_container">
+    <table>
+      <tr>
+        <td class="vote_container">
+          <%= erb :'_votes', layout: false, locals: {votable_item: @best_answer} %>
+        </td>
+        <td class="body_text">
+          <%= @best_answer.body %><br><br>
+          Answered By: <%= @best_answer.responder.username %>
+        </td>
+      </tr>
+    </table>
+    <%= erb :'/_comments', layout: false, locals: {comments: @best_answer.comments } %>
+    <br>
+    <%= erb :'/_add_comment', layout: false, locals: {commentable_item: @best_answer} %>
   </div>
 <% end %>
 
 <!-- other answers -->
 <h3>Other Answers</h3>
 <% @other_answers.each do |answer| %>
-  <div class="answer_box">
-    <p class="answer_text"> <%=answer.body%><br><br>
-    Answered By: <%= answer.responder.username %></p>
-    <%= erb :'_votes', layout: false, locals: {votable_item: answer} %>
-    <% if session[:id] == @question.author.id %>
-      <form action='/answers/<%= answer.id %>' method='POST'>
-        <input type="hidden" name="_method" value="PUT">
-        <input type="submit" value="SELECT AS BEST ANSWER">
-      </form>
-    <% end %>
+  <div class="answer_container">
+    <table>
+      <tr>
+        <td class="vote_container">
+          <%= erb :'_votes', layout: false, locals: {votable_item: answer} %>
+        </td>
+        <td class="body_text">
+          <%=answer.body%><br><br>
+          Answered By: <%= answer.responder.username %>
+        </td>
+        <td>
+          <% if session[:id] == @question.author.id %>
+            <form action='/answers/<%= answer.id %>' method='POST'>
+              <input type="hidden" name="_method" value="PUT">
+              <input class="best_answer_button" type="submit" value="Select as Best Answer">
+            </form>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+    <br>
+
     <%= erb :'/_comments', layout: false, locals: {comments: answer.comments } %>
+    <br>
     <%= erb :'/_add_comment', layout: false, locals: {commentable_item: answer} %>
   </div>
 <% end %>
