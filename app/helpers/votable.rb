@@ -3,18 +3,15 @@ module Votable
     self.votes.reduce(0) { |sum, vote| sum + vote.vote_direction }
   end
 
-  def upvote(voter_id)
-    vote(voter_id, 1)
-  end
-
-  def downvote(voter_id)
-    vote(voter_id, -1)
-  end
-
-  private
-
   def vote(voter_id, vote_direction)
-    new_vote = self.votes.create(voter_id: voter_id, vote_direction: vote_direction)
+    case vote_direction
+    when "Upvote"
+      vote_value = 1
+    when "Downvote"
+      vote_value = -1
+    end
+
+    new_vote = self.votes.create(voter_id: voter_id, vote_direction: vote_value)
     new_vote
   end
 end
