@@ -15,8 +15,6 @@ body {
   display: inline-block;
 }
 
-
-
 .comment {
   background-color: lightgray;
   max-width: 500px;
@@ -24,7 +22,7 @@ body {
 }
 
 .question {
-  border: 2px solid red;
+  background-color: yellow;
   max-width: 500px;
   padding: 10px;
 }
