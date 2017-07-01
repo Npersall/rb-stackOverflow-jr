@@ -3,6 +3,10 @@ module Votable
     self.votes.reduce(0) { |sum, vote| sum + vote.vote_direction }
   end
 
+  def has_voted?(voter_id)
+    self.votes.pluck(:voter_id).include?(voter_id)
+  end
+
   def vote(voter_id, vote_direction)
     case vote_direction
     when "Upvote"
