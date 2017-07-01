@@ -17,8 +17,9 @@
   <div id="best_answer">
     <h3>Best Answer</h3>
     <%= erb :'_votes', layout: false, locals: {votable_item: @best_answer} %>
-    <p class="answer">
-      <%= @best_answer.body %>, <%= @best_answer.responder.username %>
+    <p class="answer_text">
+      <%= @best_answer.body %><br><br>
+      Answered By: <%= @best_answer.responder.username %>
       <%= erb :'/_comments', layout: false, locals: {comments: @best_answer.comments } %>
       <%= erb :'/_add_comment', layout: false, locals: {commentable_item: @best_answer} %>
     </p>

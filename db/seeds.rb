@@ -1,42 +1,31 @@
 
-num_users = 5
+num_users = 20
+users = User.all
 
 num_users.times do |n|
-  user1 = User.create(username: Faker::Name.name, password: 'password')
-  user2 = User.create(username: Faker::Name.name, password: 'password')
+  user1 = User.create(username: Faker::Name.first_name, password: 'password')
+  user2 = User.create(username: Faker::Name.first_name, password: 'password')
+
+  users << user1
+  users << user2
+
+  pokemon = Faker::Pokemon.name
 
   # first user asks question
-  user1.questions.create(title: "#{user1.username} Question Title", body: "#{user1.username} Question Body")
+  question = user1.questions.create(title: "Where is #{pokemon} located?", body: "I would like to know where #{pokemon} is located. Does anyone know?")
 
   # second user answers that question
-  user2.answers.create(body: "#{user2.username} Answer Body", question: Question.last, best_answer: false )
-end
+  answer = user2.answers.create(body: "Probably #{Faker::Pokemon.location}.", question: Question.last, best_answer: false )
 
-users = User.all
-questions = Question.all
-answers = Answer.all
+  # 3 comments from random users for question and answer
+  3.times do |n|
+    question.comments.create(commenter: users.sample, body: "I prefer to know about #{Faker::Pokemon.name}'s location.")
+    answer.comments.create(commenter: users.sample, body: "No I think it's at #{Faker::Pokemon.location}")
+  end
 
-# create comments for Q & As
-questions.each do |question|
-  # 3 comments from random users
-  question.comments.create(commenter: users.sample, body: Faker::Pokemon.name)
-  question.comments.create(commenter: users.sample, body: Faker::Pokemon.name)
-  question.comments.create(commenter: users.sample, body: Faker::Pokemon.name)
-
-  # 3 votes from random users
-  question.votes.create(voter: users.sample, vote_direction: 1)
-  question.votes.create(voter: users.sample, vote_direction: 1)
-  question.votes.create(voter: users.sample, vote_direction: -1)
-end
-
-answers.each do |answer|
-  # 3 comments from random users
-  answer.comments.create(commenter: users.sample, body: Faker::Pokemon.name)
-  answer.comments.create(commenter: users.sample, body: Faker::Pokemon.name)
-  answer.comments.create(commenter: users.sample, body: Faker::Pokemon.name)
-
-  # 3 votes from random users
-  answer.votes.create(voter: users.sample, vote_direction: 1)
-  answer.votes.create(voter: users.sample, vote_direction: 1)
-  answer.votes.create(voter: users.sample, vote_direction: -1)
+  # 50 random votes from random users for question and answer
+  50.times do |n|
+    question.votes.create(voter: users.sample, vote_direction: [-1,1].sample)
+    answer.votes.create(voter: users.sample, vote_direction: [-1,1].sample)
+  end
 end
