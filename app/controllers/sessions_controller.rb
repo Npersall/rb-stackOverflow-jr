@@ -15,6 +15,6 @@ end
 
 # Change this to delete method, make hidden method on form
 post '/logout' do
-  session[:id] = nil
+  session.delete(:id)
   redirect '/'
 end
