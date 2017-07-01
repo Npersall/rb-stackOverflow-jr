@@ -16,10 +16,10 @@
   <ul>
     <span><li>
       Votes: <%= question.vote_sum %>
-      Answers: <%= question.answers.count%>
+      Answers: <%= question.answers.count%> --
       <!--stretch # of times question viewed -->
-      <%= question.title %>
-      <%= question.author.username %>
+      <a href="/questions/<%= question.id %>"><%= question.title %></a> --
+      By: <%= question.author.username %>
     </li></span>
   </ul>
 <% end %>
