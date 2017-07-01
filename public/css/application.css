@@ -14,10 +14,17 @@ body {
   padding: 10px;
 }
 
-.answer {
+.answer_text {
   background-color: yellow;
   max-width: 500px;
   padding: 10px;
+}
+
+.answer_box {
+  border: 2px solid black;
+  padding: 5px;
+  max-width: 550px;
+  margin: 10px;
 }
 
 #best_answer {

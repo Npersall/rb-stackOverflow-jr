@@ -24,15 +24,17 @@
 <!-- other answers -->
 <h3>Other Answers</h3>
 <% @other_answers.each do |answer| %>
-  <div>
-    <p class="answer"> <%=answer.body%>, <%= answer.responder.username %></p>
+  <div class="answer_box">
+    <p class="answer_text"> <%=answer.body%>, <%= answer.responder.username %></p>
     <%= erb :'_votes', layout: false, locals: {votable_item: answer} %>
-    <form action='/answers/<%= answer.id %>' method='POST'>
-      <input type="hidden" name="_method" value="PUT">
-      <input type="submit" value="SELECT AS BEST ANSWER">
-    </form>
+    <% if session[:user_id] == @question.author.id %>
+      <form action='/answers/<%= answer.id %>' method='POST'>
+        <input type="hidden" name="_method" value="PUT">
+        <input type="submit" value="SELECT AS BEST ANSWER">
+      </form>
+    <% end %>
+    <%= erb :'/_comments', layout: false, locals: {comments: answer.comments } %>
   </div>
-   <%= erb :'/_comments', layout: false, locals: {comments: answer.comments } %>
 <% end %>
 
 

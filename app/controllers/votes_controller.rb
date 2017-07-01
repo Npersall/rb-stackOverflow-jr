@@ -1,5 +1,4 @@
 post '/questions/:id/votes' do
-  session[:user_id] = 9
   @question = Question.find(params[:id])
 
   case params[:vote_result]
@@ -21,7 +20,6 @@ end
 
 
 post '/answers/:id/votes' do
-  session[:user_id] = 9
   @answer = Answer.find(params[:id])
   @question = @answer.question
 
