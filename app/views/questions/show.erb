@@ -1,34 +1,46 @@
-<h2><%= @question.title %></h2>
-<p><%=@question.body%></p>
+<!-- Error messages for any error that occurs from this page -->
+<%= erb :'_errors'%>
 
+<!-- question -->
+<h2><%= @question.title %></h2>
+<p>Posted By: <%= @question.author.username %></p>
+<h3>Question</h3>
+<%= erb :'_votes', layout: false, locals: {votable_item: @question} %>
+<p class="question">"<%=@question.body%>"</p>
+<%= erb :'/_comments', layout: false, locals: {comments: @question.comments } %>
+
+<!-- best answer -->
 <% if @best_answer %>
-  <h3>Best Answer</h3>
-  <p>
-    <%= @best_answer.body %>, <%= @best_answer.responder.username %>
-  </p>
+  <div id="best_answer">
+    <h3>Best Answer</h3>
+    <%= erb :'_votes', layout: false, locals: {votable_item: @best_answer} %>
+    <p class="answer">
+      <%= @best_answer.body %>, <%= @best_answer.responder.username %>
+      <%= erb :'/_comments', layout: false, locals: {comments: @best_answer.comments } %>
+    </p>
+  </div>
 <% end %>
 
+<!-- other answers -->
 <h3>Other Answers</h3>
-<p><%@other_answers.each do |answer| %>
-  <ul>
-    <li> <%=answer.body%>, <%= answer.responder.username %></li>
-    <form action='/answers/<%= answer.id %>' method='POST'>
-      <input type="hidden" name="_method" value="PUT">
-      <input type="submit" value="SELECT AS BEST ANSWER">
-    </form>
-  </ul>
-  <% end %>
-</p>
+<% @other_answers.each do |answer| %>
+  <div class="answer_box">
+    <p class="answer_text"> <%=answer.body%>, <%= answer.responder.username %></p>
+    <%= erb :'_votes', layout: false, locals: {votable_item: answer} %>
+    <% if session[:user_id] == @question.author.id %>
+      <form action='/answers/<%= answer.id %>' method='POST'>
+        <input type="hidden" name="_method" value="PUT">
+        <input type="submit" value="SELECT AS BEST ANSWER">
+      </form>
+    <% end %>
+    <%= erb :'/_comments', layout: false, locals: {comments: answer.comments } %>
+  </div>
+<% end %>
 
-<h4>Post New Answer:</h4>
+
+<!-- post new answer -->
+<h3>Post New Answer</h3>
 <form action="/answers" method="post">
-  <% if @errors %>
-    <ul>
-      <% @errors.each do |error| %>
-        <li><%= error %></li>
-      <% end %>
-    </ul>
-  <% end %>
   <textarea rows="4" cols="50" name="body"></textarea><br>
   <input type="hidden" name="question_id", value="<%=@question.id %>">
   <input type="submit" value="Post Now">

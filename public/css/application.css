@@ -1,0 +1,34 @@
+body {
+  padding: 20px;
+}
+
+.comment {
+  background-color: lightgray;
+  max-width: 500px;
+  padding: 10px;
+}
+
+.question {
+  border: 2px solid red;
+  max-width: 500px;
+  padding: 10px;
+}
+
+.answer_text {
+  background-color: yellow;
+  max-width: 500px;
+  padding: 10px;
+}
+
+.answer_box {
+  border: 2px solid black;
+  padding: 5px;
+  max-width: 550px;
+  margin: 10px;
+}
+
+#best_answer {
+  border: 5px dotted blue;
+  padding: 10px;
+  max-width: 600px;
+}
