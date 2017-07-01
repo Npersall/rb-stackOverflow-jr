@@ -1,6 +1,6 @@
 post '/questions/:id/votes' do
   @question = Question.find(params[:id])
-  if session[:id]
+  if logged_in?
     case params[:vote_result]
     when "Upvote"
       new_vote = @question.upvote(session[:id])
@@ -21,7 +21,7 @@ end
 post '/answers/:id/votes' do
   @answer = Answer.find(params[:id])
   @question = @answer.question
-  if session[:id]
+  if logged_in?
     case params[:vote_result]
     when "Upvote"
       new_vote = @answer.upvote(session[:id])

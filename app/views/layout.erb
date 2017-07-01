@@ -22,8 +22,8 @@
   <nav>
     <a href="/">Home</a>
 
-    <% if session[:id] %>
-      <a href="/users/<%= session[:id] %>"> <%= current_user.username %></a>
+    <% if logged_in? %>
+      <a href="/users/<%= current_user.id %>"> <%= current_user.username %></a>
       <form method="post" action="/logout"><input type="submit" name="logout" value="Logout"></form>
 
     <% else %>
