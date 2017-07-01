@@ -1,1 +1,28 @@
-<%= @user.username %>
+<h2><%= @user.username %>'s Profile</h2>
+
+<h3>Questions Asked</h3>
+<% if @user.questions.empty? %>
+  <p>You have not asked any questions</p>
+<% end %>
+<ul>
+  <% @user.questions.each do |question| %>
+    <li>
+      Votes: <%= question.vote_sum %>
+      Answers: <%= question.answers.count%> --
+      <a href="/questions/<%= question.id %>"><%= question.title %></a>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Questions Answered</h3>
+<% if @user.answers.empty? %>
+  <p>You have not answered any questions</p>
+<% end %>
+<ul>
+  <% @user.answers.each do |answer| %>
+    <li>
+      Votes: <%= answer.vote_sum %> --
+      <a href="/questions/<%= answer.question.id %>"><%= answer.question.title %></a>
+    </li>
+  <% end %>
+</ul>
