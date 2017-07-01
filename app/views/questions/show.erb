@@ -25,7 +25,8 @@
 <h3>Other Answers</h3>
 <% @other_answers.each do |answer| %>
   <div class="answer_box">
-    <p class="answer_text"> <%=answer.body%>, <%= answer.responder.username %></p>
+    <p class="answer_text"> <%=answer.body%><br><br>
+    Answered By: <%= answer.responder.username %></p>
     <%= erb :'_votes', layout: false, locals: {votable_item: answer} %>
     <% if session[:user_id] == @question.author.id %>
       <form action='/answers/<%= answer.id %>' method='POST'>
