@@ -4,7 +4,6 @@ end
 
 post '/login' do
   user = User.find_by(username: params[:username])
-  p params
   if user && User.authenticate(params[:username], params[:password])
     session[:id] = user.id
     redirect "/users/#{user.id}"

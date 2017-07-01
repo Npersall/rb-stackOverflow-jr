@@ -16,6 +16,7 @@ module Votable
   def vote(voter_id, vote_direction)
     new_vote = Vote.create(voter_id: voter_id, vote_direction: vote_direction)
     self.votes << new_vote
+    p "INSIDE VOTE HELPER METHOD"
     new_vote
   end
 end
