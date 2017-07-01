@@ -8,4 +8,11 @@ helpers do
     end
   end
 
+  def comment_router(commentable_item)
+    if commentable_item.class == Question
+      "/questions/#{commentable_item.id}/comments"
+    elsif commentable_item.class == Answer
+      "/answers/#{commentable_item.id}/comments"
+    end
+  end
 end
