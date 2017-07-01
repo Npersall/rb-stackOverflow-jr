@@ -1,5 +1,17 @@
 <h1>THIS IS THE HOMEPAGE</h1>
 <h2>Welcome to the best resource page for anything you want!</h2>
+
+<h3>Post A New Question</h3>
+<%= erb :'_errors'%>
+<form action="/questions" method="POST">
+  Question Title:<br>
+  <input type="text" size="50" name="question_title"/><br>
+  Question Body:<br>
+  <textarea rows="4" cols="50" name="question_body"></textarea><br>
+  <input type="submit" value="Post New Question">
+</form>
+
+<h3>See Existing Questions</h3>
 <% @questions.each do |question| %>
   <ul>
     <span><li>
