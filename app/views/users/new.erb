@@ -1,0 +1,8 @@
+<h1>Register yoself!</h1>
+
+<%= erb :_errors %>
+<form method="post" action="/users">
+  <input type="text" name="user[username]" placeholder="username">
+  <input type="password" name="user[password]" placeholder="password">
+  <input type="submit" name="new_user" value="Register">
+</form>
