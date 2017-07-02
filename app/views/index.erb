@@ -15,14 +15,26 @@
 </form>
 
 <h3>Existing Questions</h3>
-<ul class="question-container">
+
+<table class="question-container">
   <% @questions.each do |question| %>
-    <li>
-      Votes: <%= question.vote_sum %>
-      Answers: <%= question.answers.count%> --
-      <a href="/questions/<%= question.id %>"><%= question.title %></a> --
-      By: <%= question.author.username %>
-    </li>
+    <tr>
+      <td class="countables">
+        <%= question.vote_sum %><br>
+        <span>Votes<span>
+      </td>
+      <td class="countables">
+        <%= question.answers.count%><br>
+        <span>Answers<span>
+      </td>
+      <td class="question-title">
+        <a href="/questions/<%= question.id %>"><%= question.title %></a>
+      </td>
+      <td>
+        By: <%= question.author.username %><br>
+        Posted On: <%= question.created_at %>
+      </td>
+    </tr>
   <% end %>
-</ul>
+</table>
 

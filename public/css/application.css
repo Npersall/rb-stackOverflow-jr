@@ -2,9 +2,15 @@ body {
   padding: 20px;
 }
 
+td {
+  padding: 5px;
+  border: 5px solid white;
+}
+
 /* Homepage */
 .new_question_form {
   display: none;
+  font-size: ;
 }
 
 .new_question_button {
@@ -17,6 +23,20 @@ body {
   -moz-border-radius: 100px;
   -webkit-border-radius: 100px;
   border: 1px solid green;
+}
+
+.countables {
+  text-align: center;
+  background-color: lightgray;
+  width: 50px;
+}
+
+.countables > span {
+  font-size: 10px;
+}
+
+.question-title {
+  max-width: 300px;
 }
 
 /* Question Page */
@@ -36,9 +56,7 @@ body {
   width: 450px
 }
 
-td {
-  padding: 10px;
-}
+
 
 .best_answer_button {
   width: 100px;
