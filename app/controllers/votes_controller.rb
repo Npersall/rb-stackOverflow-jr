@@ -62,24 +62,5 @@ post '/answers/:id/votes' do
 end
 
 
-# post '/answers/:id/votes' do
-#   @answer = Answer.find(params[:id])
-#   @question = @answer.question
-
-#   if logged_in?
-#     if @answer.has_voted?(current_user.id)
-#       @errors = ["You've already voted for this answer."]
-#       erb :'questions/show'
-#     else
-#       @answer.vote(current_user.id, params[:vote_result])
-#       redirect "/questions/#{@question.id}"
-#     end
-#   else
-#     @errors = ["Please log in to vote."]
-#     erb :'questions/show'
-#   end
-# end
-
-
 
 
