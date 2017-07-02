@@ -1,6 +1,8 @@
 <form action="<%= vote_router(votable_item) %>" method="post">
-  <input type="submit"  name="vote_result" value="Upvote"><br>
+  <button type="submit" name="vote_result" value="Upvote">&#8679;</button>
+  <!-- <input type="submit"  name="vote_result" value="Upvote"><br> -->
   <p class="vote_count"><%= votable_item.vote_sum %></p>
-  <input type="submit" name="vote_result"  value="Downvote">
+  <button type="submit" name="vote_result" value="Downvote">&#8681;</button>
+  <!-- <input type="submit" name="vote_result"  value="Downvote"> -->
 </form>
 
