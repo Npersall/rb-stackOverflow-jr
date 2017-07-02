@@ -1,0 +1,6 @@
+<li>
+  Votes: <%= @question.vote_sum %>
+  Answers: <%= @question.answers.count%> --
+  <a href="/questions/<%= @question.id %>"><%= @question.title %></a> --
+  By: <%= @question.author.username %>
+</li>
