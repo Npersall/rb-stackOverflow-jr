@@ -1,8 +1,13 @@
 $(document).ready(function() {
+  // submitting a new question on homepage
   $('.new_question_button').click(showNewQuestionForm);
   $('.new_question_form').submit(submitQuestion);
 
-  // Upvote/downvote doesn't reload whole page
+  // Upvote/downvote
+
+  // New comment
+
+  // New answer
 
 });
 
@@ -19,10 +24,12 @@ function submitQuestion(event) {
   var url = $(this).attr('action');
 
   $.post(url, new_question)
-  .done( function() {
-    alert('new question successful')
-    // append new post to bottom
-    // hide button
+  .done( function(response) {
+    $('.question-container').append(response);
+    $('.new-question-input').val('');
+    $('.new_question_form').css('display', 'none');
+    $('.new_question_button').css('display', 'block');
+    alert('New Question Posted!');
   })
   .fail( function() {
     alert('new question failed')

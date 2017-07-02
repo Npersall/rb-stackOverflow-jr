@@ -8,21 +8,21 @@
   <h3>Post A New Question</h3>
   <%= erb :'_errors'%>
   Question Title:<br>
-  <input type="text" size="50" name="question_title"/><br>
+  <input class="new-question-input" type="text" size="50" name="question_title"/><br>
   Question Body:<br>
-  <textarea rows="4" cols="50" name="question_body"></textarea><br>
+  <textarea class="new-question-input" rows="4" cols="50" name="question_body"></textarea><br>
   <input type="submit" value="Post New Question">
 </form>
 
 <h3>Existing Questions</h3>
-<% @questions.each do |question| %>
-  <ul>
-    <span><li>
+<ul class="question-container">
+  <% @questions.each do |question| %>
+    <li>
       Votes: <%= question.vote_sum %>
       Answers: <%= question.answers.count%> --
-      <!--stretch # of times question viewed -->
       <a href="/questions/<%= question.id %>"><%= question.title %></a> --
       By: <%= question.author.username %>
-    </li></span>
-  </ul>
-<% end %>
+    </li>
+  <% end %>
+</ul>
+
