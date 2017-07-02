@@ -2,11 +2,20 @@ post '/questions/:id/comments' do
   @question = Question.find(params[:id])
 
   if logged_in?
-    @question.comments.create(commenter: current_user, body: params[:comment_body])
-    redirect "/questions/#{@question.id}"
+    comment = @question.comments.create(commenter: current_user, body: params[:comment_body])
+    if request.xhr?
+      %(<p class="comment">"#{comment.body}"<br><br>Posted By: #{comment.commenter.username}</p>)
+    else
+      redirect "/questions/#{@question.id}"
+    end
   else
-    @errors = ["Please log in to comment."]
-    erb :'questions/show'
+    if request.xhr?
+      status 422
+      'Please log in to comment.'
+    else
+      @errors = ["Please log in to comment."]
+      erb :'questions/show'
+    end
   end
 end
 
@@ -16,11 +25,20 @@ post '/answers/:id/comments' do
   @question = @answer.question
 
   if logged_in?
-    @answer.comments.create(commenter: current_user, body: params[:comment_body])
-    redirect "/questions/#{@question.id}"
+    comment = @answer.comments.create(commenter: current_user, body: params[:comment_body])
+    if request.xhr?
+      %(<p class="comment">"#{comment.body}"<br><br>Posted By: #{comment.commenter.username}</p>)
+    else
+      redirect "/questions/#{@question.id}"
+    end
   else
-    @errors = ["Please log in to comment."]
-    erb :'questions/show'
+    if request.xhr?
+      status 422
+      'Please log in to comment.'
+    else
+      @errors = ["Please log in to comment."]
+      erb :'questions/show'
+    end
   end
 end
 

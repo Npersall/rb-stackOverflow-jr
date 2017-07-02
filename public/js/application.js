@@ -7,19 +7,40 @@ $(document).ready(function() {
   $('.vote_container form').on('click', ':submit', submitVote);
 
   // new comment
+  $('.new-comment-form').submit(submitComment);
 
   // new answer
 
+  // check things still work when new one is inserted w/o refresh
+
 });
+
+function submitComment(event) {
+  event.preventDefault();
+  var newComment = $(this).serialize();
+  var url = $(this).attr('action');
+  var currentCommentFormText = $(this).find("input[type='text']")
+  var currentCommentContainer = $(this).prev().prev();
+
+  $.post(url, newComment)
+  .done( function(response) {
+    $(currentCommentContainer).append(response);
+    $(currentCommentFormText).val('');
+  })
+  .fail( function(xhr) {
+    console.log('new comment failed')
+    alert(xhr.responseText);
+  })
+}
 
 function submitVote(event) {
   event.preventDefault();
-  var current_form = $(this).parent();
-  var new_vote = { vote_result: $(this).val() };
+  var currentForm = $(this).parent();
+  var newVote = { vote_result: $(this).val() };
   var url = $(this).parent().attr('action')
-  $.post(url, new_vote)
+  $.post(url, newVote)
   .done( function(response) {
-    $(current_form).find('.vote_count').text(response)
+    $(currentForm).find('.vote_count').text(response)
   })
   .fail( function(xhr) {
     alert(xhr.responseText);
@@ -34,9 +55,9 @@ function showNewQuestionForm(event) {
 
 function submitQuestion(event) {
   event.preventDefault();
-  var new_question = $(this).serialize();
+  var newQuestion = $(this).serialize();
   var url = $(this).attr('action');
-  $.post(url, new_question)
+  $.post(url, newQuestion)
   .done( function(response) {
     $('.question-container').append(response);
     $('.new-question-input').val('');
