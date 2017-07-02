@@ -44,40 +44,19 @@
 <% end %>
 
 <!-- other answers -->
-<h3>Other Answers</h3>
-<% @question.other_answers.each do |answer| %>
-  <div class="answer_container">
-    <table>
-      <tr>
-        <td class="vote_container">
-          <%= erb :'_votes', layout: false, locals: {votable_item: answer} %>
-        </td>
-        <td class="body_text">
-          <%=answer.body%><br><br>
-          Answered By: <%= answer.responder.username %>
-        </td>
-        <td>
-          <% if session[:id] == @question.author.id %>
-            <form action='/answers/<%= answer.id %>' method='POST'>
-              <input type="hidden" name="_method" value="PUT">
-              <input class="best_answer_button" type="submit" value="Select as Best Answer">
-            </form>
-          <% end %>
-        </td>
-      </tr>
-    </table>
-    <br>
-
-    <%= erb :'/_comments', layout: false, locals: {comments: answer.comments } %>
-    <br>
-    <%= erb :'/_add_comment', layout: false, locals: {commentable_item: answer} %>
-  </div>
-<% end %>
+<div class="all_answers">
+  <% if !@question.other_answers.empty? %>
+    <h3>Other Answers</h3>
+    <% @question.other_answers.each do |answer| %>
+      <%= erb :'/_answer', layout: false, locals: {answer: answer} %>
+    <% end %>
+  <% end %>
+</div>
 
 
 <!-- post new answer -->
 <h3>Post New Answer</h3>
-<form action="/answers" method="post">
+<form class="new-answer-form" action="/answers" method="post">
   <textarea rows="4" cols="50" name="body"></textarea><br>
   <input type="hidden" name="question_id", value="<%=@question.id %>">
   <input type="submit" value="Post Answer">

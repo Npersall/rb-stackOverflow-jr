@@ -1,0 +1,25 @@
+<div class="answer_container">
+  <table>
+    <tr>
+      <td class="vote_container">
+        <%= erb :'_votes', layout: false, locals: {votable_item: answer} %>
+      </td>
+      <td class="body_text">
+        <%=answer.body%><br><br>
+        Answered By: <%= answer.responder.username %>
+      </td>
+      <td>
+        <% if session[:id] == @question.author.id %>
+          <form action='/answers/<%= answer.id %>' method='POST'>
+            <input type="hidden" name="_method" value="PUT">
+            <input class="best_answer_button" type="submit" value="Select as Best Answer">
+          </form>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <br>
+  <%= erb :'/_comments', layout: false, locals: {comments: answer.comments } %>
+  <br>
+  <%= erb :'/_add_comment', layout: false, locals: {commentable_item: answer} %>
+</div>
