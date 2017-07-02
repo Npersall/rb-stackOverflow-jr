@@ -3,14 +3,28 @@ $(document).ready(function() {
   $('.new_question_button').click(showNewQuestionForm);
   $('.new_question_form').submit(submitQuestion);
 
-  // Upvote/downvote
+  // new vote for answers anq questions
+  $('.vote_container form').on('click', ':submit', submitVote);
 
-  // New comment
+  // new comment
 
-  // New answer
+  // new answer
 
 });
 
+function submitVote(event) {
+  event.preventDefault();
+  var current_form = $(this).parent();
+  var new_vote = { vote_result: $(this).val() };
+  var url = $(this).parent().attr('action')
+  $.post(url, new_vote)
+  .done( function(response) {
+    $(current_form).find('.vote_count').text(response)
+  })
+  .fail( function(xhr) {
+    alert(xhr.responseText);
+  })
+}
 
 function showNewQuestionForm(event) {
   event.preventDefault();
@@ -22,7 +36,6 @@ function submitQuestion(event) {
   event.preventDefault();
   var new_question = $(this).serialize();
   var url = $(this).attr('action');
-
   $.post(url, new_question)
   .done( function(response) {
     $('.question-container').append(response);
