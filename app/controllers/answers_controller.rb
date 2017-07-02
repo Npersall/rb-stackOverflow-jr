@@ -6,8 +6,6 @@ post '/answers' do
   else
     @errors = @answer.errors.full_messages
     @question = @answer.question
-    @best_answer = @question.best_answer
-    @other_answers = @question.other_answers
     erb :'questions/show'
   end
 end

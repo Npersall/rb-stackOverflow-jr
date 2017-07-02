@@ -1,7 +1,5 @@
 post '/questions/:id/votes' do
   @question = Question.find(params[:id])
-  @best_answer = @question.best_answer
-  @other_answers = @question.other_answers
 
   if logged_in?
     if @question.has_voted?(current_user.id)
@@ -21,8 +19,6 @@ end
 post '/answers/:id/votes' do
   @answer = Answer.find(params[:id])
   @question = @answer.question
-  @best_answer = @question.best_answer
-  @other_answers = @question.other_answers
 
   if logged_in?
     if @answer.has_voted?(current_user.id)
@@ -33,7 +29,6 @@ post '/answers/:id/votes' do
       redirect "/questions/#{@question.id}"
     end
   else
-
     @errors = ["Please log in to vote."]
     erb :'questions/show'
   end
