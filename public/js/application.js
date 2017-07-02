@@ -10,10 +10,30 @@ $(document).ready(function() {
   $('.new-comment-form').submit(submitComment);
 
   // new answer
+  $('.new-answer-form').submit(submitAnswer);
+
+  // select best answer
 
   // check things still work when new one is inserted w/o refresh
+  // voting button on new answer
+  // commenting function on new answer
+  // best answer button on new answer
 
 });
+
+function submitAnswer(event) {
+  event.preventDefault();
+  var newAnswer = $(this).serialize();
+  var url = $(this).attr('action');
+  $.post(url, newAnswer)
+  .done( function(response) {
+    $('.all_answers').append(response);
+    $('.new-answer-form textarea').val('');
+  })
+  .fail( function(xhr) {
+    alert(xhr.responseText);
+  })
+}
 
 function submitComment(event) {
   event.preventDefault();
@@ -28,7 +48,6 @@ function submitComment(event) {
     $(currentCommentFormText).val('');
   })
   .fail( function(xhr) {
-    console.log('new comment failed')
     alert(xhr.responseText);
   })
 }
