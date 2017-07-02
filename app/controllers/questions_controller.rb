@@ -1,11 +1,12 @@
 get '/questions/:question_id' do
   @question = Question.find(params[:question_id])
-  @best_answer = @question.best_answer
-  @other_answers = @question.other_answers
+  # @best_answer = @question.best_answer
+  # @other_answers = @question.other_answers
   erb :'/questions/show'
 end
 
 post '/questions' do
+
   if session[:id] && !params[:question_body].empty? && !params[:question_title].empty?
     Question.create(author_id: session[:id], title: params[:question_title], body: params[:question_body])
     redirect '/'

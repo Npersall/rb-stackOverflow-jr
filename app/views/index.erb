@@ -1,8 +1,12 @@
 <h2>Welcome to the best resource page for anything you want!</h2>
 
-<h3>Post A New Question</h3>
-<%= erb :'_errors'%>
-<form action="/questions" method="POST">
+<form>
+  <button class="new_question_button">Submit a New Question</button>
+</form>
+
+<form class="new_question_form" action="/questions" method="POST">
+  <h3>Post A New Question</h3>
+  <%= erb :'_errors'%>
   Question Title:<br>
   <input type="text" size="50" name="question_title"/><br>
   Question Body:<br>
@@ -10,7 +14,7 @@
   <input type="submit" value="Post New Question">
 </form>
 
-<h3>See Existing Questions</h3>
+<h3>Existing Questions</h3>
 <% @questions.each do |question| %>
   <ul>
     <span><li>

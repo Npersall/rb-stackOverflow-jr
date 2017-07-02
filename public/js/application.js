@@ -1,7 +1,30 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  $('.new_question_button').click(showNewQuestionForm);
+  $('.new_question_form').submit(submitQuestion);
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+  // Upvote/downvote doesn't reload whole page
+
 });
+
+
+function showNewQuestionForm(event) {
+  event.preventDefault();
+  $(this).css('display', 'none');
+  $('.new_question_form').css('display', 'block')
+}
+
+function submitQuestion(event) {
+  event.preventDefault();
+  var new_question = $(this).serialize();
+  var url = $(this).attr('action');
+
+  $.post(url, new_question)
+  .done( function() {
+    alert('new question successful')
+    // append new post to bottom
+    // hide button
+  })
+  .fail( function() {
+    alert('new question failed')
+  });
+}
