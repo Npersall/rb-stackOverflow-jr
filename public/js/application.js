@@ -31,7 +31,7 @@ function submitQuestion(event) {
     $('.new_question_button').css('display', 'block');
     alert('New Question Posted!');
   })
-  .fail( function() {
-    alert('new question failed')
+  .fail( function(xhr) {
+    alert(xhr.responseText);
   });
 }
