@@ -1,9 +1,7 @@
 <div class="comments-container">
-  <% if !comments.empty? %>
   <h4>Comments:</h4>
-    <% comments.each do |comment| %>
-      <p class="comment">"<%= comment.body %>"<br><br>
-      Posted By: <%= comment.commenter.username %></p>
-    <% end %>
+  <% comments.each do |comment| %>
+    <p class="comment">"<%= comment.body %>"<br><br>
+    Posted By: <%= comment.commenter.username %></p>
   <% end %>
 </div>
