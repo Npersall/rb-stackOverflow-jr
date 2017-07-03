@@ -3,23 +3,17 @@ $(document).ready(function() {
   $('.new_question_button').click(showNewQuestionForm);
   $('.new_question_form').submit(submitQuestion);
 
-  // new vote for answers anq questions
-  $('.vote_container form').on('click', ':submit', submitVote);
+  // new vote for answers and questions
+  $('.question_container, .best-answer-outer-container, .all_answers').on('click', '.vote-button', submitVote);
 
   // new comment
-  $('.new-comment-form').submit(submitComment);
+  $('.question_container, .best-answer-outer-container, .all_answers').on('submit', '.new-comment-form', submitComment);
 
   // new answer
   $('.new-answer-form').submit(submitAnswer);
 
   // select best answer
-  $('.best-answer-form').submit(selectBestAnswer);
-
-  // check things still work when new one is inserted w/o refresh
-  // voting button on new answer
-  // commenting function on new answer
-  // best answer button on new answer
-
+  $('.question_container, .best-answer-outer-container, .all_answers').on('submit', '.best-answer-form', selectBestAnswer);
 });
 
 function selectBestAnswer(event) {
