@@ -20,8 +20,6 @@ $(document).ready(function() {
   // commenting function on new answer
   // best answer button on new answer
 
-  // change to using hide() vs show()
-
 });
 
 function selectBestAnswer(event) {
@@ -94,8 +92,8 @@ function submitVote(event) {
 
 function showNewQuestionForm(event) {
   event.preventDefault();
-  $(this).css('display', 'none');
-  $('.new_question_form').css('display', 'block')
+  $(this).hide();
+  $('.new_question_form').show();
 }
 
 function submitQuestion(event) {
@@ -106,8 +104,8 @@ function submitQuestion(event) {
   .done( function(response) {
     $('.question-container').append(response);
     $('.new-question-input').val('');
-    $('.new_question_form').css('display', 'none');
-    $('.new_question_button').css('display', 'block');
+    $('.new_question_form').hide();
+    $('.new_question_button').show();
     alert('New Question Posted!');
   })
   .fail( function(xhr) {
