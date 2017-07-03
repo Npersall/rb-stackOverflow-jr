@@ -23,33 +23,17 @@
 </div>
 
 <!-- best answer -->
-<% if @question.best_answer %>
-  <h3>Best Answer</h3>
-  <div class="best_answer_container">
-    <table>
-      <tr>
-        <td class="vote_container">
-          <%= erb :'_votes', layout: false, locals: {votable_item: @question.best_answer} %>
-        </td>
-        <td class="body_text">
-          <%= @question.best_answer.body %><br><br>
-          Answered By: <%= @question.best_answer.responder.username %>
-        </td>
-      </tr>
-    </table>
-    <%= erb :'/_comments', layout: false, locals: {comments: @question.best_answer.comments } %>
-    <br>
-    <%= erb :'/_add_comment', layout: false, locals: {commentable_item: @question.best_answer} %>
-  </div>
-<% end %>
+<div class="best-answer-outer-container">
+  <% if @question.best_answer %>
+    <%= erb :'/_best_answer', layout: false, locals: {question: @question} %>
+  <% end %>
+</div>
 
 <!-- other answers -->
 <div class="all_answers">
-  <% if !@question.other_answers.empty? %>
-    <h3>Other Answers</h3>
-    <% @question.other_answers.each do |answer| %>
-      <%= erb :'/_answer', layout: false, locals: {answer: answer} %>
-    <% end %>
+  <h3>Other Answers</h3>
+  <% @question.other_answers.each do |answer| %>
+    <%= erb :'/_answer', layout: false, locals: {answer: answer} %>
   <% end %>
 </div>
 

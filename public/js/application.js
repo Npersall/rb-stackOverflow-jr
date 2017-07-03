@@ -13,13 +13,39 @@ $(document).ready(function() {
   $('.new-answer-form').submit(submitAnswer);
 
   // select best answer
+  $('.best-answer-form').submit(selectBestAnswer);
 
   // check things still work when new one is inserted w/o refresh
   // voting button on new answer
   // commenting function on new answer
   // best answer button on new answer
 
+  // change to using hide() vs show()
+
 });
+
+function selectBestAnswer(event) {
+  event.preventDefault();
+  var url = $(this).attr('action')
+  var currentAnswer = $(this).closest('.answer_container')
+
+  $.ajax({
+    method: "PUT",
+    url: url
+  })
+  .done( function(response) {
+    // replace existing best answer with new best answer
+    $('.best-answer-outer-container').html('');
+    $('.best-answer-outer-container').append(response['new_best_answer']);
+    // remove new best answer from other questions section
+    $(currentAnswer).remove();
+    // add old best answer to other questions section
+    $('.all_answers').append(response['old_best_answer']);
+  })
+  .fail( function(xhr) {
+    alert('Something went wrong :(')
+  })
+}
 
 function submitAnswer(event) {
   event.preventDefault();

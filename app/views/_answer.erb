@@ -10,7 +10,7 @@
       </td>
       <td>
         <% if session[:id] == @question.author.id %>
-          <form action='/answers/<%= answer.id %>' method='POST'>
+          <form class="best-answer-form" action='/answers/<%= answer.id %>' method='POST'>
             <input type="hidden" name="_method" value="PUT">
             <input class="best_answer_button" type="submit" value="Select as Best Answer">
           </form>

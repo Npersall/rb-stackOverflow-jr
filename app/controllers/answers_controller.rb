@@ -28,6 +28,20 @@ end
 put '/answers/:id' do
   @answer = Answer.find(params[:id])
   @question = @answer.question
+  old_best_answer = @question.best_answer
   @question.best_answer = @answer
-  redirect "/questions/#{@question.id}"
+
+  if request.xhr?
+    new_best_answer_html = erb :'/_best_answer', layout: false, locals: {question: @question}
+    if old_best_answer
+      old_best_answer_html = erb :'/_answer', layout: false, locals: {answer: old_best_answer}
+      content_type :json
+      { new_best_answer: new_best_answer_html, old_best_answer: old_best_answer_html}.to_json
+    else
+      content_type :json
+      { new_best_answer: new_best_answer_html }.to_json
+    end
+  else
+    redirect "/questions/#{@question.id}"
+  end
 end

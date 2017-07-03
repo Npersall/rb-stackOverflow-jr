@@ -1,0 +1,17 @@
+<h3>Best Answer</h3>
+<div class="best_answer_container">
+  <table>
+    <tr>
+      <td class="vote_container">
+        <%= erb :'_votes', layout: false, locals: {votable_item: question.best_answer} %>
+      </td>
+      <td class="body_text">
+        <%= question.best_answer.body %><br><br>
+        Answered By: <%= question.best_answer.responder.username %>
+      </td>
+    </tr>
+  </table>
+  <%= erb :'/_comments', layout: false, locals: {comments: question.best_answer.comments } %>
+  <br>
+  <%= erb :'/_add_comment', layout: false, locals: {commentable_item: question.best_answer} %>
+</div>
