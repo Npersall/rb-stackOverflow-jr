@@ -1,9 +1,4 @@
-# Team VANS: StackOverflow Clone
-Phase 2 Week 2 Group Project
-
-[Challenge Description](https://github.com/sf-rock-doves-2017/sinatra-overflow-challenge)
-
-[Trello Board](https://trello.com/b/ypGyjlHu/stackoverflow-clone-project)
+# StackOverflow Jr.
 
 ## Team Members
 * Alexander Rowland
